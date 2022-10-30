@@ -6,6 +6,8 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 - [Python](#python)
 - [Programming Language 2](#programming-language-2)
 
+***
+
 # Python
 Skills: Data cleaning, wrangling, visualisation, analysis
 <br>
