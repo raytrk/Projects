@@ -1,6 +1,6 @@
 Disclaimer: All identifying fields have been removed from the template
 
-### Formatting Template
+## Formatting Template
 
 This template was created for a client who required a word document template with the following requirements:
 
