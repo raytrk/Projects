@@ -4,7 +4,7 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 
 ## Table of Contents
 - [Python](#python)
-- [Programming Language 2](#programming-language-2)
+- [R](#R)
 
 ***
 
