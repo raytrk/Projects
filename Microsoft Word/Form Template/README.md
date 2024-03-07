@@ -2,9 +2,9 @@
 
 This template was created for a client who required a word document template with the following requirements:
 
-- 1. Different templates for different companies
-- 2. Pre-filled fields at the appropriate locations within the template
-- 3. Only allows users to fill in at selected areas within the template
+1. Different templates for different companies
+2. Pre-filled fields at the appropriate locations within the template
+3. Only allows users to fill in at selected areas within the template
 
 ## Skills used in this project
 
