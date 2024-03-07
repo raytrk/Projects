@@ -1,3 +1,5 @@
+Disclaimer: All identifying fields have been removed from the template
+
 ### Form Template
 
 This template was created for a client who required a word document template with the following requirements:
@@ -20,7 +22,7 @@ Have a User Interface page for the user to select pre-filled fields
 <br>
 ![alt text](./pictures/image.png)
 <br>
-Once the fields are filled and the submit button is clicked, 
+Once the fields are filled and the submit button is clicked,
 <br>
 ![alt text](./pictures/image-2.png)
 <br>
