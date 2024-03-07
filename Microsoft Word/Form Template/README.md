@@ -20,9 +20,11 @@ Have a User Interface page for the user to select pre-filled fields
 <br>
 ![alt text](image.png)
 <br>
-Once the fields are filled and the submit button is clicked, the template is generated with the relevant fields filled.
+Once the fields are filled and the submit button is clicked, 
 <br>
 ![alt text](image-2.png)
+<br>
+The template is generated with the relevant fields filled.
 <br>
 ![alt text](image-1.png)
 <br>
