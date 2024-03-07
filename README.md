@@ -17,10 +17,10 @@ Libraries: pandas, numpy, matplotlib, seaborn
 
 # R
 
-# MicrosoftWord
+# Microsoft Word
 Skills: VBA, Modifying Styles, List Styles
 
-# MicrosoftExcel
+# Microsoft Excel
 Skills: VBA, Power Query, Pivot Tables
 
 
