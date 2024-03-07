@@ -5,8 +5,8 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 ## Table of Contents
 - [Python](#python)
 - [R](#R)
-- [Microsoft Word] (#microsoft word)
-- [Microsoft Excel] (#microsoft excel)
+- [Microsoft Word] (#microsoftword)
+- [Microsoft Excel] (#microsoftexcel)
 
 ***
 
@@ -17,10 +17,10 @@ Libraries: pandas, numpy, matplotlib, seaborn
 
 # R
 
-# Microsoft Word
+# MicrosoftWord
 Skills: VBA, Modifying Styles, List Styles
 
-# Microsoft Excel
+# MicrosoftExcel
 Skills: VBA, Power Query, Pivot Tables
 
 
