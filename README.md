@@ -13,7 +13,7 @@ Skills: Data cleaning, wrangling, visualisation, analysis
 <br>
 Libraries: pandas, numpy, matplotlib, seaborn
 
-# Programming Language 2
+# R
 
 
 
