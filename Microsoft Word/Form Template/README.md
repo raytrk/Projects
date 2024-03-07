@@ -17,17 +17,22 @@ This template was created for a client who required a word document template wit
 # General Idea
 
 Have a User Interface page for the user to select pre-filled fields
+<br>
 ![alt text](image.png)
 <br>
 Once the fields are filled and the submit button is clicked, the template is generated with the relevant fields filled.
+<br>
 ![alt text](image-2.png)
-
+<br>
 ![alt text](image-1.png)
 <br>
 
 Where there are checkboxes, these can be ticked to select the option required. Options not ticked will be deleted.
 For example:
 From this:
+<br>
 ![alt text](image-3.png)
+<br>
 To:
+<br>
 ![alt text](image-4.png)
