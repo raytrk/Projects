@@ -23,7 +23,8 @@ Skills: VBA, Modifying Styles, List Styles
 # Microsoft Excel
 Skills: VBA, Power Query, Pivot Tables
 
-
+***
+# Others
 - 🔭 I’m currently working on ...
 - 🌱 I’m currently learning ...
 - 👯 I’m looking to collaborate on ...
