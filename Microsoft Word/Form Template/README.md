@@ -18,15 +18,15 @@ This template was created for a client who required a word document template wit
 
 Have a User Interface page for the user to select pre-filled fields
 <br>
-![alt text](/pictures/image.png)
+![alt text](./pictures/image.png)
 <br>
 Once the fields are filled and the submit button is clicked, 
 <br>
-![alt text](/pictures/image-2.png)
+![alt text](./pictures/image-2.png)
 <br>
 The template is generated with the relevant fields filled.
 <br>
-![alt text](/pictures/image-1.png)
+![alt text](./pictures/image-1.png)
 <br>
 
 Where there are checkboxes, these can be ticked to select the option required. Options not ticked will be deleted.
@@ -34,8 +34,8 @@ For example:
 <br>
 From this:
 <br>
-![alt text](/pictures/image-3.png)
+![alt text](./pictures/image-3.png)
 <br>
 To:
 <br>
-![alt text](/pictures/image-4.png)
+![alt text](./pictures/image-4.png)
