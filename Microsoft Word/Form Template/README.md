@@ -31,6 +31,7 @@ The template is generated with the relevant fields filled.
 
 Where there are checkboxes, these can be ticked to select the option required. Options not ticked will be deleted.
 For example:
+<br>
 From this:
 <br>
 ![alt text](image-3.png)
