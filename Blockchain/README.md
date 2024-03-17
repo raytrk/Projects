@@ -2,50 +2,46 @@
 
 ## Description:
 
-#### Summary:
+#### 📜 Summary:
 
 > This Lottery Contract Smart Contract Project was created to learn to create a simple smart contract on the Ethereum blockchain using the Solidity programming language.
 
 <br>
 
-> **[Overall]**
->
-> 1. This Smart contract was created using the Remix IDE on the Sepolia testnet
-> 2. Test SepoliaEth was obtained from sepoliafaucet.com using an Alchemy account for gas fees and the ante for the Lottery Contract
+:bulb: **Overall**
+
+ 1. This Smart contract was created using the Remix IDE on the Sepolia testnet
+ 2. Test SepoliaEth was obtained from sepoliafaucet.com using an Alchemy account for gas fees and the ante for the Lottery Contract
+ 3. In the Lottery Contract, participants can put up an ante of 0.000001 ETH = 1000 Gwei for the chance to receive the entire pot in the contract
+ 4. Contract creator will pick a winner once there are at least 2 participants in the contract
 
 <br>
 
-#### Lottery Contract:
+👨‍🎓 **Takeaways**
 
-> 1. **[Main Idea]**
->    Participants can put up an ante of 0.000001 ETH = 1000 Gwei for the chance to receive the entire pot in the contract
->    Contract creator will pick a winner once there are at least 2 participants in the contract
+Remix IDE:
 
-> 2. **[Takeaways]**
+ - Remix IDE is used for writing Solidity smart contracts, though VSCode with a solidity extension can be used as well.
 
-> **Remix IDE**
->
-> - Remix IDE is used for writing Solidity smart contracts, though VSCode with a solidity extension can be used as well.
+State Variables and Initialization:
 
-> **State Variables and Initialization:**
->
-> - State Variables are stored within the contract and gas fees are required to access these state variables
+ - State Variables are stored within the contract and gas fees are required to access these state variables
 
-> **Modifiers:** `Payable` allows addresses to receive Ether transfers
+ Modifiers: 
+ - `Payable` allows addresses to receive Ether transfers
 
-> **Function Visibility:**
->
-> - `public`: Accessible from both inside and outside the contract.
-> - `private`: Only accessible within the contract.
-> - `internal`: Accessible within the contract and contracts inheriting from it.
-> - `view`: Can be called without modifying contract state (doesn't spend gas for writes).
+Function Visibility:
 
-> **Randomness:** Generating randomness in solidity is difficult. There are tradeoffs between security, availability on different blockchains, cost.
->
-> - `keccak256()` hashing allows for generating pseudo-random numbers
-> - `abi.encodePacked()` combines raw representations of the parameters passed into a 52 bit array
+ - `public`: Accessible from both inside and outside the contract.
+ - `private`: Only accessible within the contract.
+ - `internal`: Accessible within the contract and contracts inheriting from it.
+ - `view`: Can be called without modifying contract state (doesn't spend gas for writes).
 
-<br><br>
+ Randomness: Generating randomness in solidity is difficult. There are tradeoffs between security, availability on different blockchains, cost.
+
+ - `keccak256()` hashing allows for generating pseudo-random numbers
+ - `abi.encodePacked()` combines raw representations of the parameters passed into a 52 bit array
+<br>
 
 ## References
 
