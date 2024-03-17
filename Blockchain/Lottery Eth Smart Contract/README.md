@@ -1,10 +1,10 @@
-# Lottery Contract Project
+# Lottery Smart Contract
 
 ## Description:
 
 #### 📜 Summary:
 
-> This Lottery Contract Smart Contract Project was created to learn to create a simple smart contract on the Ethereum blockchain using the Solidity programming language.
+> This Lottery Contract Smart Contract Project was created while learning to create a simple smart contract on the Ethereum blockchain using the Solidity programming language.
 > 
 > Smart Contract at this address: https://sepolia.etherscan.io/address/0x3cc4d73bff31257ba61a79cabe9f62210663a3bb
 <br>
