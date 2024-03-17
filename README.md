@@ -15,6 +15,7 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 Skills: Data cleaning, wrangling, visualisation, analysis
 <br>
 Libraries: pandas, numpy, matplotlib, seaborn, pulp
+<BR>
 IDE: VisualStudio, Jupyter Notebook
 
 # R
@@ -25,7 +26,9 @@ Libraries: tidyverse, corrplot,  outliers, kernlab, kknn, caret, rpart,Rweka, ra
 
 # Blockchain
 Language: Solidity
+<br>
 Platform: Ethereum
+<br>
 IDE: Remix
 
 
