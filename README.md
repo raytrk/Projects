@@ -5,6 +5,7 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 ## Table of Contents
 - [Python](#python)
 - [R](#R)
+- [Blockchain](#blockchain)
 - [Microsoft Word](#microsoftword)
 - [Microsoft Excel](#microsoftexcel)
 
@@ -13,9 +14,23 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 # Python
 Skills: Data cleaning, wrangling, visualisation, analysis
 <br>
-Libraries: pandas, numpy, matplotlib, seaborn
+Libraries: pandas, numpy, matplotlib, seaborn, pulp
+<BR>
+IDE: VisualStudio, Jupyter Notebook
 
 # R
+Skills: Data cleaning, wrangling, visualisation, analysis
+<br>
+Libraries: tidyverse, corrplot,  outliers, kernlab, kknn, caret, rpart,Rweka, randomForest, FrF2
+
+
+# Blockchain
+Language: Solidity
+<br>
+Platform: Ethereum
+<br>
+IDE: Remix
+
 
 # Microsoft Word
 Skills: VBA, Modifying Styles, List Styles
