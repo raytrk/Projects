@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity >=0.8.2 <0.9.0;
+pragma solidity >=0.8.2 <0.9.0; //Pragma directive to inform that code needs to be run between these solidity versions
 
 contract LotteryContract{
+
+    // initializing state variables
     address public manager;
     address payable[] public candidates;
     address payable public winner;
