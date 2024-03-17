@@ -5,7 +5,7 @@ I'm Ray, a Pharmacist and an aspiring Data Analyst from Singapore.
 ## Table of Contents
 - [Python](#python)
 - [R](#R)
-- [Solidity] (#solidity)
+- [Blockchain] (#blockchain)
 - [Microsoft Word](#microsoftword)
 - [Microsoft Excel](#microsoftexcel)
 
