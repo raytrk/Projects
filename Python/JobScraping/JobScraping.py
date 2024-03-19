@@ -13,6 +13,6 @@ Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 
 
 import requests
-import beautifulsoup4 as bs4
+import bs4
 
-print("testing")
+print("testing2")
