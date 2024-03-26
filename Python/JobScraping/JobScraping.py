@@ -11,54 +11,55 @@ Docker: https://www.youtube.com/watch?v=jtBVppyfDbE
 Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 '''
 
-#todo: Figure out how to add in the link to the linkedin posting in my csv
-#Figure out how to change the search terms for the python file especially the location
-https://www.linkedin.com/jobs/search/?currentJobId=3829906852&keywords=pharmaceutical%20data%20analyst&originalSubdomain=sg
+# todo: Figure out how to add in the link to the linkedin posting in my csv
+# Figure out how to change the search terms for the python file especially the location
 
 import requests
 from bs4 import BeautifulSoup
 import math
 import pandas as pd
-l=[]
-o={}
-k=[]
-target_url='https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python%20%28Programming%20Language%29&location=Las%20Vegas%2C%20Nevada%2C%20United%20States&geoId=100293800&currentJobId=3415227738&start={}'
-for i in range(0,math.ceil(117/25)):
+l = []
+o = {}
+k = []
+target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=pharmaceutical%20data%20analyst&location=Singapore&geoId=102454443&currentJobId=3849461768&start={}'
+for i in range(0, math.ceil(117/25)):
 
     res = requests.get(target_url.format(i))
-    soup=BeautifulSoup(res.text,'html.parser')
-    alljobs_on_this_page=soup.find_all("li")
+    soup = BeautifulSoup(res.text, 'html.parser')
+    alljobs_on_this_page = soup.find_all("li")
     print(len(alljobs_on_this_page))
-    for x in range(0,len(alljobs_on_this_page)):
-        jobid = alljobs_on_this_page[x].find("div",{"class":"base-card"}).get('data-entity-urn').split(":")[3]
+    for x in range(0, len(alljobs_on_this_page)):
+        jobid = alljobs_on_this_page[x].find(
+            "div", {"class": "base-card"}).get('data-entity-urn').split(":")[3]
         l.append(jobid)
 
-target_url='https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{}'
-for j in range(0,len(l)):
+target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{}'
+for j in range(0, len(l)):
 
     resp = requests.get(target_url.format(l[j]))
-    soup=BeautifulSoup(resp.text,'html.parser')
+    soup = BeautifulSoup(resp.text, 'html.parser')
 
     try:
-        o["company"]=soup.find("div",{"class":"top-card-layout__card"}).find("a").find("img").get('alt')
+        o["company"] = soup.find(
+            "div", {"class": "top-card-layout__card"}).find("a").find("img").get('alt')
     except:
-        o["company"]=None
+        o["company"] = None
 
     try:
-        o["job-title"]=soup.find("div",{"class":"top-card-layout__entity-info"}).find("a").text.strip()
+        o["job-title"] = soup.find(
+            "div", {"class": "top-card-layout__entity-info"}).find("a").text.strip()
     except:
-        o["job-title"]=None
+        o["job-title"] = None
 
     try:
-        o["level"]=soup.find("ul",{"class":"description__job-criteria-list"}).find("li").text.replace("Seniority level","").strip()
+        o["level"] = soup.find("ul", {"class": "description__job-criteria-list"}).find(
+            "li").text.replace("Seniority level", "").strip()
     except:
-        o["level"]=None
-
-
+        o["level"] = None
 
     k.append(o)
-    o={}
+    o = {}
 
 df = pd.DataFrame(k)
 df.to_csv('linkedinjobs.csv', index=False, encoding='utf-8')
-#print(k)
+# print(k)
