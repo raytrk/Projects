@@ -13,7 +13,7 @@ Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 
 #todo: Figure out how to add in the link to the linkedin posting in my csv
 #Figure out how to change the search terms for the python file especially the location
-
+https://www.linkedin.com/jobs/search/?currentJobId=3829906852&keywords=pharmaceutical%20data%20analyst&originalSubdomain=sg
 
 import requests
 from bs4 import BeautifulSoup
