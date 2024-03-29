@@ -11,34 +11,47 @@ Docker: https://www.youtube.com/watch?v=jtBVppyfDbE
 Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 '''
 
-# todo: Figure out how to add in the link to the linkedin posting in my csv
-# Figure out how to change the search terms for the python file especially the location
+# Todo: Figure out how to obtain the url to the job posting
+# Todo: Figure out how to compare with the csv from the day before and obtain the new postings - can use the compare pandas function
 
 import requests
 from bs4 import BeautifulSoup
 import math
 import pandas as pd
-l = []
-o = {}
-k = []
+from datetime import date, timedelta
+import re
+l = []  # list of jobids
+o = {}  # dictionary of the attributes for each job
+k = []  # list of all the dicts of each job
+curr_date = date.today()
+prev_date = curr_date - timedelta(days=1)
+
+# target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python%20%28Programming%20Language%29&location=Las%20Vegas%2C%20Nevada%2C%20United%20States&geoId=100293800&currentJobId=3415227738&start={}'
+# target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3758282638&geoId=102454443&keywords=data&location=Singapore&start={}'
 target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=pharmaceutical%20data%20analyst&location=Singapore&geoId=102454443&currentJobId=3849461768&start={}'
-for i in range(0, math.ceil(117/25)):
+
+# Obtain all the jobids
+for i in range(0, 500, 25):
 
     res = requests.get(target_url.format(i))
     soup = BeautifulSoup(res.text, 'html.parser')
     alljobs_on_this_page = soup.find_all("li")
-    print(len(alljobs_on_this_page))
+    # print(len(alljobs_on_this_page))
     for x in range(0, len(alljobs_on_this_page)):
-        jobid = alljobs_on_this_page[x].find(
-            "div", {"class": "base-card"}).get('data-entity-urn').split(":")[3]
-        l.append(jobid)
+        if alljobs_on_this_page[x].find("div", {"class": "base-card"}) is not None:
+            jobid = alljobs_on_this_page[x].find(
+                "div", {"class": "base-card"}).get('data-entity-urn').split(":")[3]
+            l.append(jobid)
 
 target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{}'
+
+# for each job
 for j in range(0, len(l)):
 
     resp = requests.get(target_url.format(l[j]))
     soup = BeautifulSoup(resp.text, 'html.parser')
 
+    # Obtain the relevant information
     try:
         o["company"] = soup.find(
             "div", {"class": "top-card-layout__card"}).find("a").find("img").get('alt')
@@ -57,9 +70,17 @@ for j in range(0, len(l)):
     except:
         o["level"] = None
 
+    try:
+        o["url"] = soup.findall('a', href=True)[1]['href']
+    except:
+        o["url"] = None
+
     k.append(o)
     o = {}
 
 df = pd.DataFrame(k)
-df.to_csv('linkedinjobs.csv', index=False, encoding='utf-8')
-# print(k)
+df.to_csv(f'linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
+
+# #prev_df = pd.read_csv(f'linkedinjobs{prev_date}.csv', index=False, encoding='utf-8')
+
+# #print(k)
