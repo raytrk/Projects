@@ -11,8 +11,28 @@ Docker: https://www.youtube.com/watch?v=jtBVppyfDbE
 Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 '''
 
-# Todo: Figure out how to obtain the url to the job posting
-# Todo: Figure out how to compare with the csv from the day before and obtain the new postings - can use the compare pandas function
+# Todo: See if i can improve the matching of the company, job title and level for each jobposting
+''' 
+company:        
+<div class="topcard__flavor-row">
+          <span class="topcard__flavor">
+              <a class="topcard__org-name-link topcard__flavor--black-link" data-tracking-control-name="public_jobs_topcard-org-name" data-tracking-will-navigate href="https://www.linkedin.com/company/bytedance?trk=public_jobs_topcard-org-name" rel="noopener" target="_blank">
+
+job title:
+<h2 class="top-card-layout__title font-sans text-lg papabear:text-xl font-bold leading-open text-color-text mb-0 topcard__title">Data Analyst, BytePlus Recommend</h2>
+              
+level:
+      <ul class="description__job-criteria-list">
+        <li class="description__job-criteria-item">
+          <h3 class="description__job-criteria-subheader">
+            Seniority level
+          </h3>
+          <span class="description__job-criteria-text description__job-criteria-text--criteria">
+            Mid-Senior level
+          </span>
+        </li>
+
+'''
 
 import requests
 from bs4 import BeautifulSoup
@@ -20,7 +40,7 @@ import math
 import pandas as pd
 from datetime import date, timedelta
 import re
-l = []  # list of jobids
+l = {}  # dict of jobids: url
 o = {}  # dictionary of the attributes for each job
 k = []  # list of all the dicts of each job
 curr_date = date.today()
@@ -31,25 +51,35 @@ prev_date = curr_date - timedelta(days=1)
 target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=pharmaceutical%20data%20analyst&location=Singapore&geoId=102454443&currentJobId=3849461768&start={}'
 
 # Obtain all the jobids
-for i in range(0, 500, 25):
+for i in range(0, 500, 25):  # range(0, 500, 25):
 
     res = requests.get(target_url.format(i))
     soup = BeautifulSoup(res.text, 'html.parser')
     alljobs_on_this_page = soup.find_all("li")
+    alljobsurls_on_this_page = soup.find_all(
+        'a', class_='base-card__full-link')
     # print(len(alljobs_on_this_page))
     for x in range(0, len(alljobs_on_this_page)):
         if alljobs_on_this_page[x].find("div", {"class": "base-card"}) is not None:
             jobid = alljobs_on_this_page[x].find(
                 "div", {"class": "base-card"}).get('data-entity-urn').split(":")[3]
-            l.append(jobid)
+            # Extract the 'href' attribute containing the URL
+            try:
+                url = alljobsurls_on_this_page[x].get('href')
+            except:
+                url = ''
+            l[jobid] = url
 
 target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{}'
 
 # for each job
-for j in range(0, len(l)):
+for jobid, l_url in l.items():
 
-    resp = requests.get(target_url.format(l[j]))
+    s_url = target_url.format(jobid)
+    resp = requests.get(s_url)
     soup = BeautifulSoup(resp.text, 'html.parser')
+
+    o['job_id'] = jobid
 
     # Obtain the relevant information
     try:
@@ -70,10 +100,8 @@ for j in range(0, len(l)):
     except:
         o["level"] = None
 
-    try:
-        o["url"] = soup.findall('a', href=True)[1]['href']
-    except:
-        o["url"] = None
+    # o['short_url'] = s_url
+    o["long_url"] = l_url
 
     k.append(o)
     o = {}
@@ -81,6 +109,15 @@ for j in range(0, len(l)):
 df = pd.DataFrame(k)
 df.to_csv(f'linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
 
-# #prev_df = pd.read_csv(f'linkedinjobs{prev_date}.csv', index=False, encoding='utf-8')
+df = pd.read_csv(f'linkedinjobs{curr_date}.csv',
+                 index_col=False, encoding='utf-8')
+
+prev_df = pd.read_csv(
+    f'linkedinjobs{prev_date}.csv', index_col=False, encoding='utf-8')
+
+new_df = df[~df['job_id'].isin(prev_df['job_id'])]
+
+new_df.to_csv(f'new_linkedinjobs{curr_date}.csv',
+              index=False, encoding='utf-8')
 
 # #print(k)
