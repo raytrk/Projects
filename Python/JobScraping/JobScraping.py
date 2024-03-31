@@ -12,6 +12,7 @@ Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 '''
 
 # Todo: Other websites mycareersfuture, glassdoor
+# Todo: Do a readme as well
 
 from pathlib import Path
 import requests
