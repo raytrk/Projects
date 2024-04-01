@@ -1,8 +1,5 @@
-# This script serves to scrape websites daily from the following websites
+# This script serves to scrape websites daily from Linkedin
 '''
-1. Linkedin
-2. Mycareersfuture
-3. Glassdoor
 
 References:
 Virtual environments: https://docs.python.org/3/library/venv.html#how-venvs-work
@@ -11,8 +8,6 @@ Docker: https://www.youtube.com/watch?v=jtBVppyfDbE
 Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 '''
 
-# Todo: Other websites mycareersfuture, glassdoor
-# Todo: Do a readme as well
 
 from pathlib import Path
 import requests
@@ -31,7 +26,7 @@ curr_date = datetime.date.today()
 
 # Obtain max largest date currently
 current_dir = Path.cwd()
-files_in_cwd = os.listdir(current_dir)
+files_in_cwd = os.listdir(current_dir / "linkedinjobs")
 
 dates_in_files = sum([re.findall(r'\d\d\d\d-\d\d-\d\d', x)
                      for x in files_in_cwd], [])
@@ -133,13 +128,18 @@ for i in range(0, 1000, 25):
 df = pd.DataFrame(k)
 df.dropna(how='all', inplace=True)
 df.sort_values(by='date', ascending=False, inplace=True)
-df.to_csv(f'linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
+df.to_csv(
+    f'linkedinjobs/linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
 
-# Compare with the latest previous csv file
+# Compare with the lastest list of jobs
 prev_df = pd.read_csv(
-    f'linkedinjobs{prev_date}.csv', index_col=False, encoding='utf-8')
+    f'linkedinjobs/new_linkedinjobs{prev_date}.csv', index_col=False, encoding='utf-8')
 
-new_df = df[~df['job_id'].isin(prev_df['job_id'])]
+# Add in anything new into the latest list of jobs
+new_df = pd.concat([prev_df, df[~df['job_id'].isin(prev_df['job_id'])]])
 
-new_df.to_csv(f'new_linkedinjobs{curr_date}.csv',
+# Sort it
+new_df.sort_values(by='date', ascending=False, inplace=True)
+
+new_df.to_csv(f'linkedinjobs/new_linkedinjobs{curr_date}.csv',
               index=False, encoding='utf-8')
