@@ -7,18 +7,17 @@ Scraping Linkedin default file from: https://www.scrapingdog.com/blog/scrape-lin
 Docker: https://www.youtube.com/watch?v=jtBVppyfDbE
 Docker: https://www.youtube.com/watch?v=0UG2x2iWerk
 '''
-
-
-from pathlib import Path
-import requests
-from bs4 import BeautifulSoup
-import math
-import pandas as pd
-import datetime
-import re
-import os
-import path
 import time
+import path
+import os
+import re
+import datetime
+import pandas as pd
+import math
+from bs4 import BeautifulSoup
+import requests
+from pathlib import Path
+
 l = {}  # dict of jobids: url
 o = {}  # dictionary of the attributes for each job
 k = []  # list of all the dicts of each job
