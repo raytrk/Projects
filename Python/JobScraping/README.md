@@ -6,15 +6,11 @@
 
 > This Project collates the latest jobs from a particular LinkedIn query and outputs a CSV file with details of the job listing.
 
-<br>
-
 ### Tools used:
 
 1. Python
 2. Virtual Environments
 3. Docker Containers
-
-<br>
 
 ### Main Features:
 
@@ -35,8 +31,6 @@ Customize Search Criteria:
 #### Output:
 
 The script creates and updates the CSV file containing the latest list of scraped job data in the relevant linkedinjobs directory
-
-<br>
 
 ### Learning Points:
 
