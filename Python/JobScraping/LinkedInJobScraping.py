@@ -82,7 +82,7 @@ for i in range(0, 1000, 25):
         k.append(o)
         o = {}
 
-#count the diff status requests
+# count the diff status requests
 print(Counter(s))
 
 # for each job
@@ -93,40 +93,40 @@ print(Counter(s))
 # for jobid, l_url in l.items():
 #     o['job_id'] = jobid
 
-    # s_url = target_url.format(jobid)
-    # resp = requests.get(s_url)
-    # soup = BeautifulSoup(resp.text, 'html.parser')
+# s_url = target_url.format(jobid)
+# resp = requests.get(s_url)
+# soup = BeautifulSoup(resp.text, 'html.parser')
 
-    # Obtain the relevant information
-    # try:
-    #     o["company"] = soup.find(
-    #         "div", {"class": "top-card-layout__card"}).find("a").find("img").get('alt')
-    # except:
-    #     o["company"] = None
+# Obtain the relevant information
+# try:
+#     o["company"] = soup.find(
+#         "div", {"class": "top-card-layout__card"}).find("a").find("img").get('alt')
+# except:
+#     o["company"] = None
 
-    # try:
-    #     o["company"] = soup.find(
-    #         "a", class_="topcard__org-name-link topcard__flavor--black-link").text.strip()
-    # except:
-    #     o["company"] = None
+# try:
+#     o["company"] = soup.find(
+#         "a", class_="topcard__org-name-link topcard__flavor--black-link").text.strip()
+# except:
+#     o["company"] = None
 
-    # try:
-    #     o["job-title"] = soup.find(
-    #         "div", {"class": "top-card-layout__entity-info"}).find("a").text.strip()
-    # except:
-    #     o["job-title"] = None
+# try:
+#     o["job-title"] = soup.find(
+#         "div", {"class": "top-card-layout__entity-info"}).find("a").text.strip()
+# except:
+#     o["job-title"] = None
 
-    # try:
-    #     o["level"] = soup.find("ul", {"class": "description__job-criteria-list"}).find(
-    #         "li").text.replace("Seniority level", "").strip()
-    # except:
-    #     o["level"] = None
+# try:
+#     o["level"] = soup.find("ul", {"class": "description__job-criteria-list"}).find(
+#         "li").text.replace("Seniority level", "").strip()
+# except:
+#     o["level"] = None
 
-    # # o['short_url'] = s_url
-    # o["long_url"] = l_url
+# # o['short_url'] = s_url
+# o["long_url"] = l_url
 
-    # k.append(o)
-    # o = {}
+# k.append(o)
+# o = {}
 
 # Create today's csv file
 df = pd.DataFrame(k)
@@ -153,3 +153,5 @@ new_df.to_csv(f'linkedinjobs/new_linkedinjobs{curr_date}.csv',
 os.remove(f'linkedinjobs/new_linkedinjobs{prev_date}.csv')
 
 # py LinkedInJobScraping.py
+# docker build -t python-LIJS .
+# docker run python-LIJS
