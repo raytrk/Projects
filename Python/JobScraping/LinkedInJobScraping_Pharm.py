@@ -27,7 +27,7 @@ curr_date = datetime.date.today()
 # Obtain max largest date currently
 current_dir = Path.cwd()
 
-files_in_cwd = os.listdir(current_dir / "linkedinjobs")
+files_in_cwd = os.listdir(current_dir / "linkedinjobsPharm")
 
 dates_in_files = sum([re.findall(r'\d\d\d\d-\d\d-\d\d', x)
                      for x in files_in_cwd], [])
@@ -38,10 +38,9 @@ dates_in_files = [datetime.datetime.strptime(
 if len(dates_in_files) > 0:
     prev_date = dates_in_files[0]
 
-
 # target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python%20%28Programming%20Language%29&location=Las%20Vegas%2C%20Nevada%2C%20United%20States&geoId=100293800&currentJobId=3415227738&start={}'
 # target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3758282638&geoId=102454443&keywords=data&location=Singapore&start={}'
-target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=pharmaceutical%20data%20analyst&location=Singapore&geoId=102454443&currentJobId=3849461768&start={}'
+target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=healthcare%20medical%20liaison&location=Singapore&geoId=102454443&currentJobId=3831206486&start={}'
 
 
 # Obtain all the jobids
@@ -159,7 +158,4 @@ new_df.to_csv(f'linkedinjobsPharm/new_linkedinjobs{curr_date}.csv',
 if len(dates_in_files) > 0:
     os.remove(f'linkedinjobsPharm/new_linkedinjobs{prev_date}.csv')
 
-
-# py LinkedInJobScraping.py
-# docker build -t python-jobscrape .
-# docker run python-jobscrape
+# py LinkedInJobScraping_Pharm.py
