@@ -13,7 +13,6 @@ import os
 import re
 import datetime
 import pandas as pd
-import math
 from bs4 import BeautifulSoup
 import requests
 from pathlib import Path
@@ -35,7 +34,7 @@ dates_in_files = sum([re.findall(r'\d\d\d\d-\d\d-\d\d', x)
 dates_in_files = [datetime.datetime.strptime(
     x, '%Y-%m-%d').date() for x in dates_in_files]
 
-prev_date = max([x for x in dates_in_files if x != curr_date])
+prev_date = dates_in_files[0] #max([x for x in dates_in_files if x != curr_date])
 
 # target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python%20%28Programming%20Language%29&location=Las%20Vegas%2C%20Nevada%2C%20United%20States&geoId=100293800&currentJobId=3415227738&start={}'
 # target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3758282638&geoId=102454443&keywords=data&location=Singapore&start={}'
@@ -153,5 +152,5 @@ new_df.to_csv(f'linkedinjobs/new_linkedinjobs{curr_date}.csv',
 os.remove(f'linkedinjobs/new_linkedinjobs{prev_date}.csv')
 
 # py LinkedInJobScraping.py
-# docker build -t python-LIJS .
-# docker run python-LIJS
+# docker build -t python-jobscrape .
+# docker run python-jobscrape
