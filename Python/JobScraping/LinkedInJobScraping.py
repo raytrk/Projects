@@ -17,14 +17,17 @@ import math
 from bs4 import BeautifulSoup
 import requests
 from pathlib import Path
+from collections import Counter
 
 l = {}  # dict of jobids: url
 o = {}  # dictionary of the attributes for each job
 k = []  # list of all the dicts of each job
+s = []  # status codes
 curr_date = datetime.date.today()
 
 # Obtain max largest date currently
 current_dir = Path.cwd()
+
 files_in_cwd = os.listdir(current_dir / "linkedinjobs")
 
 dates_in_files = sum([re.findall(r'\d\d\d\d-\d\d-\d\d', x)
@@ -45,7 +48,7 @@ for i in range(0, 1000, 25):
     res = requests.get(target_url.format(i))
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    print(res.status_code)
+    s.append(res.status_code)
     alljobs_on_this_page = soup.find_all("li")
     alljobsurls_on_this_page = soup.find_all(
         'a', class_='base-card__full-link')
@@ -79,6 +82,8 @@ for i in range(0, 1000, 25):
         k.append(o)
         o = {}
 
+#count the diff status requests
+print(Counter(s))
 
 # for each job
 # realised i was getting too many 429 status codes if I run this,
@@ -127,8 +132,9 @@ for i in range(0, 1000, 25):
 df = pd.DataFrame(k)
 df.dropna(how='all', inplace=True)
 df.sort_values(by='date', ascending=False, inplace=True)
-df.to_csv(
-    f'linkedinjobs/linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
+
+# df.to_csv(
+#     f'linkedinjobs/linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
 
 # Compare with the lastest list of jobs
 prev_df = pd.read_csv(
@@ -142,3 +148,8 @@ new_df.sort_values(by='date', ascending=False, inplace=True)
 
 new_df.to_csv(f'linkedinjobs/new_linkedinjobs{curr_date}.csv',
               index=False, encoding='utf-8')
+
+# Remove the previous list
+os.remove(f'linkedinjobs/new_linkedinjobs{prev_date}.csv')
+
+# py LinkedInJobScraping.py
