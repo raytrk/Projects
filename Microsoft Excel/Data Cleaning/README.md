@@ -13,7 +13,7 @@
 > What's different from the common Power Query methodology is:
 >
 > 1. Users do not have to save their files with a specific name.
->    a. The Power Query engine will use the latest file within the specified subfolder.
+>    * The Power Query engine will use the latest file within the specified subfolder.
 
 ---
 
