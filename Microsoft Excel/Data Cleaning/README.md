@@ -25,15 +25,15 @@
 
 2.  These top 60 items were made up of the top 30 items by Unit Cost(UC) and top 30 items by Total Value(TV) where TV = UC \* Qty kept in the Pharmacy
 
-3.  There maybe items in both lists, in which case, the next item chosen will be the next in sequence between the 2 lists. I.e.:
-    i. 31st item from the top 30 by UC list then
-    ii. 31st item from the top 30 by TV list then
-    iii. 32nd item from the top 30 by UC list .... so on and so forth
+3.  There maybe items in both lists, in which case, the next item chosen will be the next in sequence between the 2 lists. I.e.: 
+    * 31st item from the top 30 by UC list then
+    * 31st item from the top 30 by TV list then
+    * 32nd item from the top 30 by UC list .... so on and so forth
 
-4.  These data is not easily extracted from our inventory management system
-    a. The Stock Balance report details the quantity of each item held
-    b. The PostStockTake Analysis report details the Unit Cost of each item
-5.  Hence a simple file that can generate these top 60 items each month is required.
+5.  These data is not easily extracted from our inventory management system
+    * The Stock Balance report details the quantity of each item held
+    * The PostStockTake Analysis report details the Unit Cost of each item
+6.  Hence a simple file that can generate these top 60 items each month is required.
 
 ---
 
