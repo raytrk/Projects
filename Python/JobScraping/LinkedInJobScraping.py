@@ -152,12 +152,12 @@ else:
 # Sort it
 new_df.sort_values(by='date', ascending=False, inplace=True)
 
-new_df.to_csv(f'linkedinjobsPharm/new_linkedinjobs{curr_date}.csv',
+new_df.to_csv(f'linkedinjobs/new_linkedinjobs{curr_date}.csv',
               index=False, encoding='utf-8')
 
 # Remove the previous list
 if len(dates_in_files) > 0:
-    os.remove(f'linkedinjobsPharm/new_linkedinjobs{prev_date}.csv')
+    os.remove(f'linkedinjobs/new_linkedinjobs{prev_date}.csv')
 
 
 # py LinkedInJobScraping.py
