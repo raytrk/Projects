@@ -140,7 +140,7 @@ df.sort_values(by='date', ascending=False, inplace=True)
 # Compare with the lastest list of jobs if it exists
 if len(dates_in_files) > 0:
     prev_df = pd.read_csv(
-        f'linkedinjobs/new_linkedinjobs{prev_date}.csv', index_col=False, encoding='utf-8')
+        f'linkedinjobsPharm/new_linkedinjobs{prev_date}.csv', index_col=False, encoding='utf-8')
 
     # Add in anything new into the latest list of jobs
     new_df = pd.concat([prev_df, df[~df['job_id'].isin(prev_df['job_id'])]])
