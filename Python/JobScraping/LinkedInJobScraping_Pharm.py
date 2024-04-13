@@ -132,7 +132,9 @@ print(Counter(s))
 # Create today's csv file
 df = pd.DataFrame(k)
 df.dropna(how='all', inplace=True)
-df.sort_values(by='date', ascending=False, inplace=True)
+
+if not df.empty:
+    df.sort_values(by='date', ascending=False, inplace=True)
 
 # df.to_csv(
 #     f'linkedinjobs/linkedinjobs{curr_date}.csv', index=False, encoding='utf-8')
