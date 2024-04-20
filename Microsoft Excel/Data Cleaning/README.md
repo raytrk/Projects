@@ -13,7 +13,7 @@
 > What's different from the common Power Query methodology is:
 >
 > 1. Users do not have to save their files with a specific name.
->    * The Power Query engine will use the latest file within the specified subfolder.
+>    - The Power Query engine will use the latest file within the specified subfolder.
 
 ---
 
@@ -25,15 +25,16 @@
 
 2.  These top 60 items were made up of the top 30 items by Unit Cost(UC) and top 30 items by Total Value(TV) where TV = UC \* Qty kept in the Pharmacy
 
-3.  There maybe items in both lists, in which case, the next item chosen will be the next in sequence between the 2 lists. I.e.: 
-    * 31st item from the top 30 by UC list then
-    * 31st item from the top 30 by TV list then
-    * 32nd item from the top 30 by UC list .... so on and so forth
+3.  There maybe items in both lists, in which case, the next item chosen will be the next in sequence between the 2 lists. I.e.:
 
-5.  These data is not easily extracted from our inventory management system
-    * The Stock Balance report details the quantity of each item held
-    * The PostStockTake Analysis report details the Unit Cost of each item
-6.  Hence a simple file that can generate these top 60 items each month is required.
+    - 31st item from the top 30 by UC list then
+    - 31st item from the top 30 by TV list then
+    - 32nd item from the top 30 by UC list .... so on and so forth
+
+4.  These data is not easily extracted from our inventory management system
+    - The Stock Balance report details the quantity of each item held
+    - The PostStockTake Analysis report details the Unit Cost of each item
+5.  Hence a simple file that can generate these top 60 items each month is required.
 
 ---
 
@@ -76,31 +77,29 @@
    ii. Any other cells with the names of the subfolders
    ![alt text](image.png)
 
-3. Create Queries to these named ranges with the following M language code, changing SB to the particular named range required.
-
-```
-= Excel.CurrentWorkbook(){[Name="SB"]}[Content]{0}[Column1]
-```
-
 ---
 
 ### Extract the latest file from a subfolder
 
 1. Create queries to your source files with the following M language code.
 2. This code extracts data from the latest file saved within the specified subfolder
-3. Q_CWD refers to the query for the filepath
-4. Q_SB refers to the query for subfolder 1
 
 ```
 let
-    Source = Folder.Files(Q_CWD&"\"&Q_SB),
+    CWD = Excel.CurrentWorkbook(){[Name="CWD"]}[Content]{0}[Column1],
+    SB = Excel.CurrentWorkbook(){[Name="SB"]}[Content]{0}[Column1],
+    Source = Folder.Files(CWD&"\"&SB),
     #"Sorted Rows" = Table.Sort(Source,{{"Date modified", Order.Descending}}),
     #"Remove Hidden" = Table.SelectRows(#"Sorted Rows", each [Attributes]?[Hidden]? <> true),
     #"Kept First Rows" = Table.FirstN(#"Remove Hidden",1),
     MyWorkbook.xlsx = #"Kept First Rows"[Content]{0},
     #"Imported Excel Workbook1" = Excel.Workbook(MyWorkbook.xlsx),
-    LEVEL11_Sheet = #"Imported Excel Workbook1"{[Item="LEVEL11",Kind="Sheet"]}[Data]
+    LEVEL11_Sheet = #"Imported Excel Workbook1"{[Item="LEVEL11",Kind="Sheet"]}[Data],
+    #"Removed Top Rows" = Table.Skip(LEVEL11_Sheet,11),
+    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Warehouse", type text}, {"Warehouse Description", type text}, {"Product ID", type text}, {"Product Description", type text}, {"Base UOM", type text}, {"Category 1", type text}, {"Category 2", type text}, {"Category 3", type text}, {"Qty", Int64.Type}, {"Batch No", type text}, {"Expiry Date", type date}}),
+    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [Qty] > 0),
+    #"Grouped Rows" = Table.Group(#"Filtered Rows", {"Product ID"}, {{"SumOfQty", each List.Sum([Qty]), type nullable number}})
 in
-    LEVEL11_Sheet
-
+    #"Grouped Rows"
 ```
