@@ -73,8 +73,8 @@
 ```
 
 2. Create named ranges for
-   i. The cell with the filepath
-   ii. Any other cells with the names of the subfolders
+    - The cell with the filepath
+    -  Any other cells with the names of the subfolders
    ![alt text](image.png)
 
 ---
