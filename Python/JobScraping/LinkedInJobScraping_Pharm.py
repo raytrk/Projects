@@ -40,7 +40,8 @@ if len(dates_in_files) > 0:
 
 # target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python%20%28Programming%20Language%29&location=Las%20Vegas%2C%20Nevada%2C%20United%20States&geoId=100293800&currentJobId=3415227738&start={}'
 # target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3758282638&geoId=102454443&keywords=data&location=Singapore&start={}'
-target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=healthcare%20medical%20liaison&location=Singapore&geoId=102454443&currentJobId=3831206486&start={}'
+# target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=healthcare%20medical%20liaison&location=Singapore&geoId=102454443&currentJobId=3831206486&start={}'
+target_url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=medical%20informatics&location=Singapore&geoId=102454443&currentJobId=3831206486&start={}'
 
 
 # Obtain all the jobids
